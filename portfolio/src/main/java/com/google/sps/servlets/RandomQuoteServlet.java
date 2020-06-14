@@ -15,25 +15,30 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+/** Servlet that returns a random quote. */
+@WebServlet("/random-quote")
+public final class RandomQuoteServlet extends HttpServlet {
 
-  private int pageViews = 0;
+  private List<String> quotes;
+
+  @Override
+  public void init() {
+    quotes = new ArrayList<>();
+    quotes.add(
+        "Quote");  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    pageViews++;
+    String quote = quotes.get((int) (Math.random() * quotes.size()));
 
     response.setContentType("text/html;");
-    response.getWriter().println("<link rel='stylesheet' href='style.css'>");
-    response.getWriter().println("<div class = 'center'><h1>Page Views</h1>");
-    response.getWriter().println("<p>This page has been viewed " + pageViews + " times. yay!</p>");
-    response.getWriter().println("<a href='/'> Click here to return</a></div>");
-}
+    response.getWriter().println(quote);
+  }
 }
