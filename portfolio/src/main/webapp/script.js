@@ -36,52 +36,6 @@ function myFunction() {
   document.getElementById("myBar").style.width = scrolled + "%";
 }
 
-function getRandomQuote() {
-  console.log('Fetching a random quote.');
-
-  // The fetch() function returns a Promise because the request is asynchronous.
-  const responsePromise = fetch('/random-quote');
-
-  // When the request is complete, pass the response into handleResponse().
-  responsePromise.then(handleResponse);
-}
-
-/**
- * Handles response by converting it to text and passing the result to
- * addQuoteToDom().
- */
-function handleResponse(response) {
-  console.log('Handling the response.');
-
-  // response.text() returns a Promise, because the response is a stream of
-  // content and not a simple variable.
-  const textPromise = response.text();
-
-  // When the response is converted to text, pass the result into the
-  // addQuoteToDom() function.
-  textPromise.then(addQuoteToDom);
-}
-
-/** Adds a random quote to the DOM. */
-function addQuoteToDom(quote) {
-  console.log('Adding quote to dom: ' + quote);
-
-  const quoteContainer = document.getElementById('quote-container');
-  quoteContainer.innerText = quote;
-}
-
-/**
- * The above code is organized to show each individual step, but we can use an
- * ES6 feature called arrow functions to shorten the code. This function
- * combines all of the above code into a single Promise chain. You can use
- * whichever syntax makes the most sense to you.
- */
-function getRandomQuoteUsingArrowFunctions() {
-  fetch('/random-quote').then(response => response.text()).then((quote) => {
-    document.getElementById('quote-container').innerText = quote;
-  });
-}
-
 /**
  * Another way to use fetch is by using the async and await keywords. This
  * allows you to use the return values directly instead of going through
@@ -90,5 +44,35 @@ function getRandomQuoteUsingArrowFunctions() {
 async function getRandomQuoteUsingAsyncAwait() {
   const response = await fetch('/random-quote');
   const quote = await response.text();
-  document.getElementById('quote-container').innerText = quote;
+  document.getElementById('quote').innerHTML = quote;
+
+}
+async function getPageViewsUsingAsyncAwait(){
+    const response = await fetch('/pageview')
+    const view = await response.text();
+    console.log(view);
+    document.getElementById('pageview').innerHTML = "This page has been view " + view + "times";
+    document.getElementById('button-view').innerHTML = "";
+}
+
+function countChars(obj){
+    var maxLength = 500;
+    var strLength = obj.value.length;
+    var charRemain = (maxLength - strLength);
+    
+    if(charRemain < 0){
+        document.getElementById("charNum").innerHTML = '<span style="color: red;">You have exceeded the limit of '+maxLength+' characters</span>';
+    }else{
+        document.getElementById("charNum").innerHTML = charRemain+' characters remaining';
+    }
+
+}
+function initMap() {
+    const NewYork = { lat: 40.712776, lng: -74.005974 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: NewYork,
+    zoom: 8
+  });
+    var marker = new google.maps.Marker({position: NewYork, map: map});
+
 }

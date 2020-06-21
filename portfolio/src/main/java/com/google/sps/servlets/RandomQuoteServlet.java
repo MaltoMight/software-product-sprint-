@@ -32,7 +32,9 @@ public final class RandomQuoteServlet extends HttpServlet {
   public void init() {
     quotes = new ArrayList<>();
     quotes.add(
-        "Quote");  }
+        "Random Quote No 1");
+    quotes.add("Random Quote No 2");
+    quotes.add("Random Quote No 3");  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -5,6 +5,11 @@ body{
   cursor:url('cursor.cur'), default;
   font-size:20px;
 }
+#map {
+  border: thin solid black;
+  height: 500px;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #000000FF;
@@ -23,7 +28,13 @@ body{
 .topnav a:hover {
   color: #4e4d4d;  
 }
-  
+
+
+textarea {
+    width: 500px;
+    height: 100px;
+    resize:none;
+}
 
 /* List */
 ul li{

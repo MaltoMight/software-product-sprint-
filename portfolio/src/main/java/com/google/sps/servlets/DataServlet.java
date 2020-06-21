@@ -20,8 +20,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+@WebServlet("/pageview")
 public class DataServlet extends HttpServlet {
 
   private int pageViews = 0;
@@ -31,9 +32,7 @@ public class DataServlet extends HttpServlet {
     pageViews++;
 
     response.setContentType("text/html;");
-    response.getWriter().println("<link rel='stylesheet' href='style.css'>");
-    response.getWriter().println("<div class = 'center'><h1>Page Views</h1>");
-    response.getWriter().println("<p>This page has been viewed " + pageViews + " times. yay!</p>");
-    response.getWriter().println("<a href='/'> Click here to return</a></div>");
+    response.getWriter().println(pageViews);
 }
 }
+
