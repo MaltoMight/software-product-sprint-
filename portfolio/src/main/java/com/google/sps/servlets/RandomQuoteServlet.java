@@ -15,24 +15,32 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/** Servlet that returns a random quote. */
+@WebServlet("/random-quote")
+public final class RandomQuoteServlet extends HttpServlet {
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/pageview")
-public class DataServlet extends HttpServlet {
+  private List<String> quotes;
 
-  private int pageViews = 0;
+  @Override
+  public void init() {
+    quotes = new ArrayList<>();
+    quotes.add(
+        "Random Quote No 1");
+    quotes.add("Random Quote No 2");
+    quotes.add("Random Quote No 3");  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    pageViews++;
+    String quote = quotes.get((int) (Math.random() * quotes.size()));
 
     response.setContentType("text/html;");
-    response.getWriter().println(pageViews);
+    response.getWriter().println(quote);
+  }
 }
-}
-
