@@ -2,22 +2,88 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Todo List</title>
+    <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <div class="topnav">
+        <a class="active" href="">Home</a>
+    </div>
   </head>
-  <body onload="loadTasks()">
-    <h1>Todo List</h1>
+  <body>   
 
-    <form method="POST" action="/new-task">
-      <input type="text" name="title" />
-      <br/>
-      <button>Submit</button>
-    </form>
+        <div class="header">
+            <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
+            </div>
+        </div>
+        <div class ="center">
+            <a>Hello!</a><br>
+        </div>
 
-    <hr/>
+        <div class ="content">
+            <a>My name is Charles. </a><br>
+            <a>I am currently a computer science student at Borough of Manhattan Community College transferring to University at Buffalo</a><br>
+            <a>I am originally from Brazil and I immigrated to the states 3 years ago</a><br>
+            <a>Some of my hobbies are gaming, listen music and anime</a>
 
-    <ul id="task-list"></ul>
+        </div>
+            <p>Education</p>
+            <ul>
+                <li>August 2020 - May 2022</li>
+                <a>University at Buffalo</a><br>
+                <a>Intend Major: Computer Science</a>
 
+                <li>August 2018 - July 2020</li>
+                <a>Borough of Manhattan Community College</a><br>
+                <a>Major: Computer Science</a>
+            </ul>
+
+            <p>Contact</p>
+            <ul>
+                <li>Github: <a href="https://github.com/MaltoMight" target="_blank">MaltoMight</a></li>
+            </ul>
+
+            <p>Programming Languages</p>
+            <ul>
+                <li>HTML/CSS</li>
+                <li>C++</li>
+                <li>C#</li>
+            </ul>
+            <p>Software</p>
+            <ul>
+                <li>Unity 3D</li>
+                <li>Adobe Premiere Pro</li>
+            </ul>
+            <p>Operational System</p>
+            <ul>
+                <li>Windows 10</li>
+                <li>PopOS (Linux distribution debian based)</li>
+            </ul>
+        </div>
+        <form action="/create-task" method ="POST">
+            <div class="center">
+                <p>Enter a comment below:</p>
+                <textarea name="text-input" maxlength="500" onkeyup="countChars(this);"></textarea>
+                <p id="charNum">500 characters remaining</p>
+                <p class="submit">
+                    <input type="submit" value="Send"></p>
+            </div>
+        </form>
+
+        <ul id="task-list"></ul>
+
+
+        <div class="center">
+            <p>Click here to see a random quote:</p>
+            <button onclick="getRandomQuoteUsingAsyncAwait()">Fetch a quote!</button>
+            <p id ="quote"></p>
+        </div>
+        <div id="button-view" class ="center">
+            <button onclick = "getPageViewsUsingAsyncAwait()"> Page Views </button>
+        </div>
+            <p class ="center" id ="pageview"></p>
+    <footer>
+        <a>Customized cursor used: <a href="http://www.cursors-4u.com/cursor/2011/11/05/league-of-legends-pointer.html" target="_blank">source</a></a>
+    </footer>
   </body>
 </html>
